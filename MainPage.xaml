@@ -1,22 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PoemLearn.MainPage">
+             x:Class="PoemLearn.MainPage"
+             Title="PoemLearn">
     <ContentPage.Content>
-        <StackLayout x:Name="stackLabels" Spacing="10">
-            <Label x:Name ="author" 
-                   FontSize= "20"
-                   FontAttributes="Italic"/>
-            <Label x:Name="name" 
-                   FontSize="20"
-                   FontAttributes="Italic"/>
-            <Label x:Name="poema"
-                   Margin="30"
-                   FontSize="Large"
-                   FontFamily="Arial"
-                   HorizontalOptions="CenterAndExpand"/>
-            <!-- VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" -->
-        </StackLayout>
+        <Button x:Name="OnSecondPageButton"
+            Text = "Пушкин" FontSize="Large" BorderWidth="1"
+        HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+        Clicked="SecondPageButton_Click" />
     </ContentPage.Content>
 </ContentPage>
