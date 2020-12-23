@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PoemLearn.SecondPage"
+             x:Class="Poem_Learn.SecondPage"
              Title="Начнётся стихосложение!">
     <ContentPage.Content>
-        <StackLayout x:Name="stackLabels" Spacing="10">
+        <ScrollView>
+            <StackLayout x:Name="stackLabels" Spacing="5">
+            <ImageButton Source="arrow.jpg"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"
+                         Padding="5"
+                         Clicked="ImageButton_Clicked"/>
             <Label x:Name ="author" 
                    FontSize= "20"
-                   FontAttributes="Italic"/>
-            <Label x:Name="name" 
+                   FontAttributes="Italic"
+                   Padding="10"
+                   />
+                <Label x:Name="name" 
                    FontSize="20"
-                   FontAttributes="Italic"/>
-            <Label x:Name="poema"
+                   FontAttributes="Italic"
+                   Padding="10"
+                   />
+
+                <Label x:Name="poema"
                    Margin="30"
-                   FontSize="Large"
-                   FontFamily="Arial"
-                   HorizontalOptions="CenterAndExpand"/>
-            <Label x:Name="CheckLabel"
-                   Text="Какое слово из перечисленных подходит?"
-                   Margin="20"
                    FontSize="Medium"
-                   TextColor="Black" />
-            <RadioButton x:Name="But1" Text="Cat" />
-            <RadioButton x:Name="But2" Text="Dog" />
-            <RadioButton x:Name="But3" Text="Elephant" /> 
-            <StackLayout Spacing="8" Orientation="Horizontal">
-                <Button x:Name="OnMainPageButton"            
-                        Text = "На главную" FontSize="Small" BorderWidth="1"        
-                        HorizontalOptions="Center" VerticalOptions="CenterAndExpand"        
-                        Clicked="BackButton_Click" />
-                <Button x:Name="CheckButton"            
-                        Text = "Проверить" FontSize="Small" BorderWidth="1"        
-                        HorizontalOptions="Center" VerticalOptions="CenterAndExpand"        
-                        Clicked="CheckButton_Click" />
+                   FontFamily="Arial"
+                   Padding="10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="Span1" Text="Сегодня " FontSize="20" />
+                            <Span x:Name="Span2" Text="хорошая " FontSize="20" ForegroundColor="DarkOrange" />
+                            <Span x:Name="Span3" Text="погода!" FontSize="20" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <StackLayout Spacing="30" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ChangeButton"
+                            Text = "Change" FontSize="Medium" BorderWidth="1" BorderRadius="10"
+                            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                            Clicked="ChangeButton_Clicked" />
+
+                    <Button x:Name="CheckButton"
+                            Text="Check" FontSize="Medium" BorderWidth="1" BorderRadius="10"
+                            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                            Clicked="CheckButton_Clicked"/>
+
+                    <Button x:Name="NextPoemButton"            
+                            Text = "Next" FontSize="Medium" BorderWidth="1" BorderRadius="10"       
+                            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"        
+                            Clicked="NextPoemButton_Clicked" />
+                </StackLayout>
+
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
