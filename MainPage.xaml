@@ -1,26 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PoemLearn.MainPage"
+             x:Class="Poem_Learn.MainPage"
              Title="Poem Learn"
              BackgroundImageSource="poemImage.jpg">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Главное меню" 
+            <Label Text="Main menu" 
                    FontSize= "Header"
                    FontAttributes="Italic"
-                   HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                   HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"/>
             <Button x:Name="OnSecondPageButton"
-                Text = "Начать" FontSize="Large" BorderWidth="1"
+                Text = "Start" FontSize="Large" BorderWidth="1" BorderRadius="10"
                 HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
                 Clicked="SecondPageButton_Click" />
-            <Button x:Name="Help_Button"
-                Text = "Помощь" FontSize="Large" BorderWidth="1"
+            <!--Button x:Name="Help_Button"
+                Text = "Help" FontSize="Large" BorderWidth="1"
                 HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                />
+                /-->
             <Button x:Name="Quit_Button"
-                Text = "Выйти" FontSize="Large" BorderWidth="1"
+                Text = "Quit" FontSize="Large" BorderWidth="1" BorderRadius="10"
                 HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                 />
+                Clicked="Quit_Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
