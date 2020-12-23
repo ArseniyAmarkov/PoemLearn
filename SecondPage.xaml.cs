@@ -34,25 +34,9 @@ namespace Poem_Learn
             InitializeComponent();
 
             poemIndex = 0;
-
-
-            // Получаем путь к файлу со стихотворениями (Если его нет, создаём через File.WriteAllText(filename, text))
-            //string poemsfile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "poems.txt");
-            //File.WriteAllText(poemsfile, poems);
-            //string[] poemlines = File.ReadAllLines(poemsfile);
-            //File.Delete(poemsfile);
-
             pp.score = 0;
+            
             string[] poemlines = pp.poems.Split('\n');
-
-
-
-            // Получаем путь к файлу словаря...
-            //string dictfile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "reverse_dict.txt");
-            //File.WriteAllText(dictfile, dicttext);
-            //string[] textDict = File.ReadAllLines(dictfile);
-            //File.Delete(dictfile);
-
             string[] textDict = pp.dict.Split('\n');
     
             // ...и заполняем словарь ключ - значение (слово - часть речи)
@@ -108,9 +92,6 @@ namespace Poem_Learn
             //poema.Text = poemArray[poemIndex].poem;
 
 
-
-            //
-            //
             // Включаем функцию обработки стиха и запоминания слова
             //rememberWord = MainProcess(poema.Text);
             rememberWord = MainProcess(poemArray[poemIndex].poem);
