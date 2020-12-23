@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace PoemLearn
+namespace Poem_Learn
 {
     public partial class MainPage : ContentPage
     {
@@ -18,6 +18,12 @@ namespace PoemLearn
         private async void SecondPageButton_Click(object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SecondPage());
+        }
+
+
+        private void Quit_Button_Clicked(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
         }
     }
 }
