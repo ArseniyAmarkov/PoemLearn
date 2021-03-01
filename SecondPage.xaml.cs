@@ -34,9 +34,25 @@ namespace Poem_Learn
             InitializeComponent();
 
             poemIndex = 0;
+
+
+            // Получаем путь к файлу со стихотворениями (Если его нет, создаём через File.WriteAllText(filename, text))
+            //string poemsfile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "poems.txt");
+            //File.WriteAllText(poemsfile, poems);
+            //string[] poemlines = File.ReadAllLines(poemsfile);
+            //File.Delete(poemsfile);
+
             pp.score = 0;
-            
             string[] poemlines = pp.poems.Split('\n');
+
+
+
+            // Получаем путь к файлу словаря...
+            //string dictfile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "reverse_dict.txt");
+            //File.WriteAllText(dictfile, dicttext);
+            //string[] textDict = File.ReadAllLines(dictfile);
+            //File.Delete(dictfile);
+
             string[] textDict = pp.dict.Split('\n');
     
             // ...и заполняем словарь ключ - значение (слово - часть речи)
@@ -92,6 +108,9 @@ namespace Poem_Learn
             //poema.Text = poemArray[poemIndex].poem;
 
 
+
+            //
+            //
             // Включаем функцию обработки стиха и запоминания слова
             //rememberWord = MainProcess(poema.Text);
             rememberWord = MainProcess(poemArray[poemIndex].poem);
@@ -102,6 +121,15 @@ namespace Poem_Learn
 
             var rand = new Random();
             Span2.Text = simWords[rand.Next(simWords.Length)];
+            Span2.ForegroundColor = Color.DarkOrange;
+
+            // Заполняем лэйблы вариантов ответа в верхней части экрана
+            HorLab1.Text = simWords[rand.Next(simWords.Length)];
+            while (HorLab1.Text == HorLab2.Text || HorLab1.Text == HorLab3.Text || HorLab2.Text == HorLab3.Text)
+            {
+                HorLab2.Text = simWords[rand.Next(simWords.Length)];
+                HorLab3.Text = simWords[rand.Next(simWords.Length)];
+            }
         }
 
 
@@ -147,13 +175,15 @@ namespace Poem_Learn
                 if (dictionary.ContainsKey(remWord))
                     break;
             }
-            // Убираем это слово из стихотворения
+            // Заменяем слово из стихотворения на случайное из массива
             int id = poem.IndexOf(remWord);
             if (id >= 0)
             {
                 Span1.Text = poem.Substring(0, id);
                 Span2.Text = remWord;
-                Span3.Text = poem.Substring(id + remWord.Length);
+                Span2.TextDecorations = TextDecorations.None;
+                Span3.Text = "";
+                Span4.Text = poem.Substring(id + remWord.Length);
 
                 //poem = poem.Substring(0, id) + "_____" + poem.Substring(id + remWord.Length);
             }
@@ -291,7 +321,8 @@ namespace Poem_Learn
             {
                 CheckButton.BackgroundColor = Color.Red;
                 Span2.ForegroundColor = Color.Red;
-                Span2.Text += "(" + rememberWord + ")";
+                Span2.TextDecorations = TextDecorations.Strikethrough;
+                Span3.Text = " " + rememberWord;
             }
 
             ChangeButton.IsEnabled = false;
@@ -302,6 +333,8 @@ namespace Poem_Learn
         // Кнопка переключения на следующее стихотворение
         private async void NextPoemButton_Clicked(object sender, EventArgs e)
         {
+            //await progressBar.ProgressTo(0.75, 500, Easing.Linear);
+            ProgressLine.Progress += 0.04;
             poemIndex++;
             PrintPoem(); // poemArray, dictionary
             ChangeButton.IsEnabled = true;
@@ -314,6 +347,33 @@ namespace Poem_Learn
             CheckButton.BackgroundColor = Color.Default;
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (Span2.Text == simWords[0])
+                Span2.Text = simWords[1];
+            else if (Span2.Text == simWords[1])
+                Span2.Text = simWords[2];
+            else if (Span2.Text == simWords[2])
+                Span2.Text = simWords[0];
+        }
 
+        // Обработчики событий при нажатии на варианты ответов над стихотворением
+        private void HorLab1_Tapped(object sender, EventArgs e)
+        {
+            Span2.Text = HorLab1.Text;
+            CheckButton_Clicked(sender, e);
+        }
+        private void HorLab2_Tapped(object sender, EventArgs e)
+        {
+            Span2.Text = HorLab2.Text;
+            CheckButton_Clicked(sender, e);
+        }
+        private void HorLab3_Tapped(object sender, EventArgs e)
+        {
+            Span2.Text = HorLab3.Text;
+            CheckButton_Clicked(sender, e);
+        }
+
+       
     }
 }
